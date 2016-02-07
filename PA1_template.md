@@ -95,8 +95,8 @@ max(val)
 ```
 ## [1] 206.1698
 ```
-interval      avg
-835      835 206.1698
+interval 835
+avg 206.1698
 
 ## Imputing missing values
 This data set has several missing values, denoted by "NA."  The number of such instances can be found easily by subtracting the *clean* data set above from the full data set (*dat* in the code above).  
