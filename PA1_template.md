@@ -1,6 +1,3 @@
----
-output: pdf_document
----
 # Reproducible Research: Peer Assessment 1
 
 
@@ -9,7 +6,8 @@ The data for this report can be found at https://d396qusza40orc.cloudfront.net/r
 
 After downloading the data set into a csv file named, "activity.csv", it is read into R to analyze the numbers.
 
-``` {r}
+
+```r
 dat <- read.csv("activity.csv")
 ```
 
@@ -17,7 +15,8 @@ dat <- read.csv("activity.csv")
 ## What is mean total number of steps taken per day?
 Here is a histogram showing the frequencies of the individual's number of steps per day.  Entries of "NA" are ignored.  
 
-``` {r}
+
+```r
 clean <- na.omit(dat) 
 days <- unique(clean$date)
 daily <- c()
@@ -28,13 +27,27 @@ for (i in 1:length(days)) {
 hist(daily, main="Steps Taken Each Day", xlab="Steps")
 ```
 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+
 The **mean** and **median** total number of steps taken per day can be calculated by looking at the daily totals tallied in the *daily* variable above.  Again, entries of "NA" are ignored.
 
-``` {r}
+
+```r
 stepsMean <- mean(daily)
 stepsMedian <- median(daily)
 stepsMean
+```
+
+```
+## [1] 10766.19
+```
+
+```r
 stepsMedian
+```
+
+```
+## [1] 10765
 ```
 
 On days when data was collected, the individual in this case took an average of 10,766 steps per day with a median value of 10,765 steps.
@@ -42,7 +55,8 @@ On days when data was collected, the individual in this case took an average of 
 ## What is the average daily activity pattern?
 The following plot displays the individual's average number of steps by 5-minute interval over the entire two months.  Entries of "NA" are once again omitted.  
 
-``` {r}
+
+```r
 fiveMins <- split(clean, clean$interval)
 val <- c()
 mx <- c()
@@ -57,25 +71,45 @@ for (i in 1:length(unique(clean$interval))) {
 plot(unique(clean$interval), val, type="l", xlab="Interval", ylab="Average Steps", main="Average Steps by Interval")
 ```
 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+
 The interval with the highest average number of steps taken can be found using the *mx* variable above and is displayed below, as well as its value, which is found via the *var* variable above:
 
-``` {r}
+
+```r
 mx
+```
+
+```
+## [1] 835
+```
+
+```r
 max(val)
+```
+
+```
+## [1] 206.1698
 ```
 
 ## Imputing missing values
 This data set has several missing values, denoted by "NA."  The number of such instances can be found easily by subtracting the *clean* data set above from the full data set (*dat* in the code above).  
 
-``` {r}
+
+```r
 nrow(dat) - nrow(clean)
+```
+
+```
+## [1] 2304
 ```
 
 So, there are 2,304 intervals in which the individual does not have data on the number of steps taken. 
 
 To get a complete set of data, "NA" entries will be replaced with the average steps taken value across the entire *clean* data set.  This will be done in a new data set, named *complete*.  A histogram of steps taken each day with this new data set, as well as its **mean** and **median** are all displayed below. 
 
-``` {r}
+
+```r
 complete <- dat
 
 for (i in 1:nrow(complete)) {
@@ -91,17 +125,33 @@ for (i in 1:length(allDays)) {
 }
 
 hist(fullDaily, main="Steps Taken Each Day", xlab="Steps")
+```
 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+
+```r
 stepsCompleteMean <- mean(fullDaily)
 stepsCompleteMedian <- median(fullDaily)
 stepsCompleteMean
+```
+
+```
+## [1] 10766.19
+```
+
+```r
 stepsCompleteMedian
+```
+
+```
+## [1] 10766.19
 ```
 
 The **mean** and **median** are virtually the same as they were for the data set that omitted "NA" values.  This is because the "NA" values were replaced by the *clean* data set's average value, which of course would not alter the overall average.  The one noticeable change occurs in the histogram, where the most frequent range of daily steps taken increased in frequency.  This is due to the days with "NA" values being assigned the mean, pushing that range higher.  
 
 ## Are there differences in activity patterns between weekdays and weekends?
-``` {r}
+
+```r
 dayType <- c()
 for (i in 1:nrow(complete)) {
         if (weekdays(as.Date(complete[i,"date"])) =="Saturday" | weekdays(as.Date(complete[i,"date"])) == "Sunday") {
@@ -134,6 +184,7 @@ for (i in 1:length(unique(wend$interval))) {
 }
 
 plot(unique(wend$interval), v, type="l", xlab="Interval", ylab="Average Steps", main="Weekend Average Steps by Interval")
-
 ```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
 
