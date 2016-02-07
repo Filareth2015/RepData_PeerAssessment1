@@ -52,8 +52,6 @@ stepsMedian
 ## [1] 10765
 ```
 
-Average steps per day: 10,766
-Median: 10,765 steps.
 
 ## What is the average daily activity pattern?
 
@@ -95,8 +93,7 @@ max(val)
 ```
 ## [1] 206.1698
 ```
-interval 835
-avg 206.1698
+
 
 ## Imputing missing values
 This data set has several missing values, denoted by "NA."  The number of such instances can be found easily by subtracting the *clean* data set above from the full data set (*dat* in the code above).  
@@ -109,7 +106,7 @@ nrow(dat) - nrow(clean)
 ```
 ## [1] 2304
 ```
-[1] 2304
+
 
 So, there are 2,304 intervals in which the individual does not have data on the number of steps taken. 
 
