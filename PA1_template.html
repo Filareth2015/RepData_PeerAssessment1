@@ -205,16 +205,16 @@ hr {
 
 <h2>Loading and preprocessing the data</h2>
 
-<p>The data for this report can be found at <a href="https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip">https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip</a>.  </p>
+<p>Link to data: <a href="https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip">https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip</a>.  </p>
 
-<p>After downloading the data set into a csv file named, &ldquo;activity.csv&rdquo;, it is read into R to analyze the numbers.</p>
+<p>Reading activity.csv:</p>
 
 <pre><code class="r">dat &lt;- read.csv(&quot;activity.csv&quot;)
 </code></pre>
 
 <h2>What is mean total number of steps taken per day?</h2>
 
-<p>Here is a histogram showing the frequencies of the individual&#39;s number of steps per day.  Entries of &ldquo;NA&rdquo; are ignored.  </p>
+<p>Calculating the total number of steps taken per day:  </p>
 
 <pre><code class="r">clean &lt;- na.omit(dat) 
 days &lt;- unique(clean$date)
@@ -228,7 +228,7 @@ hist(daily, main=&quot;Steps Taken Each Day&quot;, xlab=&quot;Steps&quot;)
 
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAdVBMVEUAAAAAADoAAGYAOjoAOpAAZrY6AAA6ADo6AGY6OgA6OpA6ZrY6kNtmAABmADpmAGZmZjpmtv+QOgCQOjqQOmaQkDqQtpCQ27aQ29uQ2/+2ZgC2tma225C2/9u2///bkDrb/7bb////tmb/25D//7b//9v///94iXhEAAAACXBIWXMAAAsSAAALEgHS3X78AAAOwElEQVR4nO2di3ajyBVF5Y7tTNySZ+TuTNrKxBrr9f+fGKoAPexrQAg4BXfvtWZku6lTXDZPSVCzA7hkpp4B0IB4pyDeKYh3CuKdgninIN4piHcK4p2CeKcg3imIdwrinYJ4pyDeKYh3CuKdgninIN4piHcK4p2CeKcg3imIdwrinTJ28bvFbHb/nv2wWtZMuX+ZRR6OLb+9Vedm3L1+jjlrVkxV13WKjFx8vuQzl6vapd+j+Nm8xayLGbn47eP9e2bwfy+50XW++WVy/jubBUHbx/z1NPXhsMmFBvHZyrA0Wh2C0rgfORwnjytO9o/ZVH89nqYKP2zCr/lkcbXYjGFFGL34uKXvc/GrYvMrNu6wTuSvx6mzH8u/BWnr0PpDq3yPcBRfTp7/a1xXzqeKa0C2uyknC4mrz/uJ9Bi5+KghLPywq49ewzaX/XUejC3zTfzI8dcgLPvvr8f54UOrTbGaFDvx8pdvb9vHrJuslzhVGVSIX+fHmXyyh4uDQbKMXHy+veZK4t72tMPNdMyjvo+7+ig1iL/7VxB21ioeAD6Jzycv998fpjqJzyfbv9z/vXgw5jM1Ri++2N3b4uMx/nSGFsXHP0Xx+Upx2eqktNg5lJNvir37h6nKXX052WF99+fjCA7xYxe/Ls/oj7v6wHFXH387nfDHCfL1Ie7q39Znu+2PSou/lpPHXX32iyE+nNyVk4UVZQyH+LGLP25oq9PJXXkilv1w/Ody6sxXvoXn4qO4U6sLpfmOYFlOfjq5M6aaH1PDSndxXpEqIxcfzYctLHvNlvcqPyznF2Zh+Zf/XE4c/pZNNF+H8/DyyuvUyhBfTh4ny6KsqcIe5WyyMRziRy/eRHpevR7HG3mIn1Df14D4blmP5Z37SYqHehDvFMQ7BfFOQbxTEO8UxDsF8U5BvFMQ7xTEOwXxTkG8UxDvFMQ7BfFOQbxTEO8UxDsF8U5BvFMQ7xTEOwXxTkG8UxDvFMQ7BfFOQbxTEO8UxDsF8U5BvFM8iJ91irqajphKHVV0WuNUFthU6qgC8QZTqaMKxBtMpY4qEG8wlTqqQLzBVOqoAvEGU6mjCsQbTKWOKhBvMJU6qkC8wVTqqALxBlOpowrEG0yljioQbzCVOqpAvMFU6qgC8QZTqaMKxBtMpY4qEG8wlTqqQLzBVOqoAvEGU6mjCsQbTKWOKhBvMJU6qkC8wVTqqALxBlOpowrEG0yljioQbzCVOqpAvMFU6qgC8QZTqaMKxBtMpY4qEG8wlTqqQLzBVOqoAvEGtXXsfn877Baz2f37ELPTC4g3aCI+uD9svw8xO72AeIMm4rdP7/mWP1IQb1AvfnH362fY4p9Gu69HvEGDOvYvs4fD5ttoN3jEW0yljioQb9CmjrE9BwjxBvV1bB9nd6/myd1YlgHiDWrr2L8ss//miO8jTEijN3AOh9UD4nsIE9Joi89Y/+M3xHceJqS+jt1iHl7Wn6/nxrIMEG9wSx1jWQaIN0C8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxCvDhCBeGSYE8cowIYhXhglBvDJMCOKVYUIQrwwTgnhlmBDEK8OEIF4ZJgTxyjAhiFeGCUG8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxCvDhCBeGSYE8cowIYhXhglBvDJMCOKVYUIQrwwTgnhlmBDEK8OEIF4ZJgTxyjAhiFeGCUG8MkxIfR3bxzjGnDHS5FiWAeINausoBiM6bD6PIz6WZYB4g9o6ymHHGH6shzAhbPHKMCH1dewWHOP7ChPCWb0yTEibOhhNegI0upxjNOmewoQ0OrljNOmewoQ0vJxjNOlewoQ0vZxjNOk+woQ0uZxjNOm+woRwOacME4J4ZZgQxCvDhCBeGSYE8cowIYhXhglBvDJMCOKVYUIQrwwTgnhlmBDEK8OEIF4ZJgTxyjAhiFeGCUG8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxCvDhCBeGSYE8cowIYhXhglBvDJMCOKVYUIQrwwTgnhlmBDEK8OEIF4ZJgTxyjAhiFeGCUG8MkxIXsdu8dC6bfog3qCsYzOLjypu1TZ1EG9wVsf+ZTZbtmybNIg3KOvIH05uPKm4QdvUQbxBeYz/POJM07bpg3gDzuqVYUKKOjbZ0X197dndWJYB4g2KXf1zcL79/Ej6Bm3TB/EGeR35aATG0HIN2qYP4g2KOuLgcsbQck3aJg/iDWrrCFd4YbUw9gZjWQaIN2giPl7db79f3zYREG9wPKv/YhjRIH779M64c72ECSnfwPnyvdrd4u7Xz7DFPzGocOdhQgrxVW/V7l9mD4cNgwr3ECakqGM1b982eRBvUO7qvzzGW20YVHj88F69MkwI4pVhQoo6shO4+7+frQ9piqOAdRwYyzJAvEH5Xv08u1yz36sPY4hXtU0fxBscL+cy8V9c1O3MPcFhPMsA8QbnW/yaT+cGDhNyOsabn8M0aZs8iDfgrF4ZJgTxyjAhbd65u2ybPog3OK9jfeUb9mNZBog3OK/jutspxrMMEG9wXof10WvTtimDeIOLY/xVd86NZxkg3oCzemWYEMQrw4Rc7OqvvKAbyzJAvEFRx/qh/N/1bZMH8QbnX7bkcm7oMCHHT+cObPHDhwk5/3Tu2gcgjWUZIN6As3plmBDEK8OE1H7Zsr5t8iDeoP7LlnVt0wfxBg2+bFnTNn0Qb8CXLZVhQviypTJMCGf1yjAhDe6Pr2mbPog3KI7xP659cvWpbfog3oBv2SrDhHCMV4YJQbwyTEioo92p3XiWAeINSvHG08watR0DiDdIVfysSzqdsS7DhCQrPtGsaYlv9R1bxI+aVM/qEd8ziFeGCUG8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxCvDhNTXsX386rN6xI+Y2jryoeXNweURP2Jq6yi/gjvwoMKI7xm2eGWYkPo6vr69CvEjhrN6ZZiQNnUMMagw4nuGLV4ZJgTxyjAh9ZdzmkGFEd8z9XVoBhVGfM80qEMyqDDie4ZjvDJMCOKVYUIQrwwTgnhlmBDEK8OEIF4ZJgTxyjAhiFeGCUG8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxCvDhCBeGSYE8cowIYhXhglBvDJMCOKVYUIQrwwTgnhlmBDEK8OEIF4ZJgTxyjAhiFeGCUG8MkwI4pVhQhCvDBOCeGWYEMQrw4QgXhkmBPHKMCGIV4YJQbwyTAjilWFCEK8ME4J4ZZgQxF8b1ildztmVdYjaDpmd7haP+F6z03WF+F6z03WF+F6z03WF+F6z03WF+F6z03WF+F6z03WF+F6z03WF+F6z03WVsvgwbnwYdPDzKOKITyus464z8cH9Yfv9+rY3gPieaSJ++/Seb/llG/ud5mTfxU7XVdLiF3e/foYt/unTvv6j+O7mii2+dxp0vX+ZPRw2n8cURnxaYcN1jfikwobrGvFJhQ3XNeKTChuua8QnFTZc14hPKmy4rhGfVNhwXSM+qbDhukZ8UmHDdY34pMKG6xrxSYUN1zXikwobrmvEJxU2XNeITypsuK4Rn1TYcF0jPqmw4bpGfFJhw3WN+KTChusa8UmFDdc14pMKG65rxCcVNlzXiE8qbLiuEZ9U2HBdIz6psOG6RnxSYcN1jfikwobrGvFJhQ3XNeKTChuua8QnFTZc14hPKmy4rhGfVNhwXSM+qbDhukZ8UmHDdY34pMKG6xrxSYUN1zXibw7TPS8K8U7DEO80DPFOwxDvNAzxTsMQ7zQM8U7DEO80DPFOwxDvNAzxTsMQ7zQM8U7DEO80DPFOwxDvNAzxTsMQ7zQM8U7DEO80DPFOw+qn3j7Gr3Ay4OC0wmqn3r8s4+vm83DSiB9xWO3U5WDCQw8qDFfTrfiKLR5GTP1qslvE1ck4xsOI6fQoA+MB8U5BvFMQ7xTEOwXxTkG8UxDvFMQ7BfFOQbxTOhQv/mwKZOK7i+Lz+N7DEO80DPFOwxDvNAzxTsMQ7zQM8U7DeAPHKYh3CuKdgninIN4piHcK4p2CeKcg3imId0pX4neL2a33Ua9n8Z7cIuny5Tq2v719DGgfF8O6mbfwcJFlV3NWhLWds47Eh7vo1w+3ZayWZ0mXL9exCUvCzGkRF8O6mbfd8+th+8/XbuasCGs9Zx2JD8/LiJtGe/Y/Xs+SLl+uClrd/Zm1MHOuj8vDupm3TXCxWnYzZ0VY6znrSPz26T2ugzcQH8CwLJMuX66dm6xoM6dNXAjrbt6+mqW2Ya3nrCPx4UEpN4oP+61s/S2SLl+ujcpcmTlt4uJa1NW87V/m3c1ZCGs9Z+ls8ZHVMsktvqt52y3mh87mLIa1nrN0jvGRL46AV6ZsuzvGX4i/NWz7GM7EOpqzPKz1nHV2Vj+/9aw+7J/2P9+KpMuXKwlFmzlt4srjxu3zVqjqZs6KsNZzltZ1/N1rBxfePV3H3z5v63i/y7KbOSvD2s4Z79w5BfFOQbxTEO8UxDsF8U5BvFMQ7xTEOwXxTkG8UxDvFMQ7BfFOQbxTEO8UxDsF8U5BvFMQ7xTP4sNdKN+6+Vr4+HAsfrcIN5vevyPeGfmXsJ//s8g2+90i3mv8+7/jd5U3DsZQdix+/5J/9zysAKt4B8Jucf+++RZvRLn1nu/kcSw+btnZBh7uOXp+DXc2hZ3//sdrFzcBJo9r8Yd4j24QH242vsuNr5bhYRN3U3fvWHx8tEC40zS/y/CQP2WieNLA5tYbwlLHsfh4Vh9uKs6P8Znq3eIhvATpiJ8wYQef7dL3L/GsPvtp9/xH3MevOKv3hYuzugLEn4F4mDyIdwrinYJ4pyDeKYh3CuKdgninIN4piHcK4p2CeKcg3imIdwrinYJ4p/wfdSv5EQw40+wAAAAASUVORK5CYII=" alt="plot of chunk unnamed-chunk-2"/></p>
 
-<p>The <strong>mean</strong> and <strong>median</strong> total number of steps taken per day can be calculated by looking at the daily totals tallied in the <em>daily</em> variable above.  Again, entries of &ldquo;NA&rdquo; are ignored.</p>
+<p>Calculating and reporting the mean and median of the total number of steps taken per day:</p>
 
 <pre><code class="r">stepsMean &lt;- mean(daily)
 stepsMedian &lt;- median(daily)
@@ -244,11 +244,12 @@ stepsMean
 <pre><code>## [1] 10765
 </code></pre>
 
-<p>On days when data was collected, the individual in this case took an average of 10,766 steps per day with a median value of 10,765 steps.</p>
+<p>Average steps per day: 10,766
+Median: 10,765 steps.</p>
 
 <h2>What is the average daily activity pattern?</h2>
 
-<p>The following plot displays the individual&#39;s average number of steps by 5-minute interval over the entire two months.  Entries of &ldquo;NA&rdquo; are once again omitted.  </p>
+<p>Average number of steps by 5-minute interval over the entire two months:  </p>
 
 <pre><code class="r">fiveMins &lt;- split(clean, clean$interval)
 val &lt;- c()
@@ -280,6 +281,9 @@ plot(unique(clean$interval), val, type=&quot;l&quot;, xlab=&quot;Interval&quot;,
 <pre><code>## [1] 206.1698
 </code></pre>
 
+<p>interval      avg
+835      835 206.1698</p>
+
 <h2>Imputing missing values</h2>
 
 <p>This data set has several missing values, denoted by &ldquo;NA.&rdquo;  The number of such instances can be found easily by subtracting the <em>clean</em> data set above from the full data set (<em>dat</em> in the code above).  </p>
@@ -289,6 +293,8 @@ plot(unique(clean$interval), val, type=&quot;l&quot;, xlab=&quot;Interval&quot;,
 
 <pre><code>## [1] 2304
 </code></pre>
+
+<p>[1] 2304</p>
 
 <p>So, there are 2,304 intervals in which the individual does not have data on the number of steps taken. </p>
 

@@ -2,9 +2,10 @@
 
 
 ## Loading and preprocessing the data
-The data for this report can be found at https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip.  
 
-After downloading the data set into a csv file named, "activity.csv", it is read into R to analyze the numbers.
+Link to data: https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip.  
+
+Reading activity.csv:
 
 
 ```r
@@ -13,7 +14,8 @@ dat <- read.csv("activity.csv")
 
 
 ## What is mean total number of steps taken per day?
-Here is a histogram showing the frequencies of the individual's number of steps per day.  Entries of "NA" are ignored.  
+
+Calculating the total number of steps taken per day:  
 
 
 ```r
@@ -29,7 +31,7 @@ hist(daily, main="Steps Taken Each Day", xlab="Steps")
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
-The **mean** and **median** total number of steps taken per day can be calculated by looking at the daily totals tallied in the *daily* variable above.  Again, entries of "NA" are ignored.
+Calculating and reporting the mean and median of the total number of steps taken per day:
 
 
 ```r
@@ -50,10 +52,12 @@ stepsMedian
 ## [1] 10765
 ```
 
-On days when data was collected, the individual in this case took an average of 10,766 steps per day with a median value of 10,765 steps.
+Average steps per day: 10,766
+Median: 10,765 steps.
 
 ## What is the average daily activity pattern?
-The following plot displays the individual's average number of steps by 5-minute interval over the entire two months.  Entries of "NA" are once again omitted.  
+
+Average number of steps by 5-minute interval over the entire two months:  
 
 
 ```r
@@ -91,6 +95,8 @@ max(val)
 ```
 ## [1] 206.1698
 ```
+interval      avg
+835      835 206.1698
 
 ## Imputing missing values
 This data set has several missing values, denoted by "NA."  The number of such instances can be found easily by subtracting the *clean* data set above from the full data set (*dat* in the code above).  
@@ -103,6 +109,7 @@ nrow(dat) - nrow(clean)
 ```
 ## [1] 2304
 ```
+[1] 2304
 
 So, there are 2,304 intervals in which the individual does not have data on the number of steps taken. 
 
