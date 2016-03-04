@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 # Reproducible Research: Peer Assessment 1
 
 
@@ -53,7 +56,11 @@ for (i in 1:length(unique(clean$interval))) {
         }
 }
 
-plot(unique(clean$interval), val, type="l", xlab="Interval", ylab="Average Steps", main="Average Steps by Interval")
+plot(unique(clean$interval), 
+     val, type="l", 
+     xlab="Interval", 
+     ylab="Average Steps", 
+     main="Average Steps by Interval")
 ```
 
 The interval with the highest average number of steps taken can be found using the *mx* variable above and is displayed below, as well as its value, which is found via the *var* variable above:
@@ -90,7 +97,8 @@ for (i in 1:nrow(complete)) {
 allDays <- unique(complete$date)
 fullDaily <- c()
 for (i in 1:length(allDays)) {
-        fullDaily <- append(fullDaily,sum(subset(complete, complete$date == allDays[i])$steps))
+        fullDaily <- append(fullDaily,
+                            sum(subset(complete, complete$date == allDays[i])$steps))
 }
 
 hist(fullDaily, main="Steps Taken Each Day", xlab="Steps")
@@ -127,7 +135,12 @@ for (i in 1:length(unique(wday$interval))) {
         u <- append(u,sum(wdayInt[[i]]["steps"])/(length(allDays)))
 }
 
-plot(unique(wday$interval), u, type="l", xlab="Interval", ylab="Average Steps", main="Weekday Average Steps by Interval")
+plot(unique(wday$interval), 
+     u, 
+     type="l", 
+     xlab="Interval", 
+     ylab="Average Steps", 
+     main="Weekday Average Steps by Interval")
 
 wendInt <- split(wend, wend$interval)
 v <- c()
@@ -136,7 +149,12 @@ for (i in 1:length(unique(wend$interval))) {
         v <- append(v,sum(wendInt[[i]]["steps"])/(length(allDays)))
 }
 
-plot(unique(wend$interval), v, type="l", xlab="Interval", ylab="Average Steps", main="Weekend Average Steps by Interval")
+plot(unique(wend$interval), 
+     v, 
+     type="l", 
+     xlab="Interval", 
+     ylab="Average Steps", 
+     main="Weekend Average Steps by Interval")
 
 ```
 
